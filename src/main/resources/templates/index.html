@@ -54,34 +54,9 @@
                                for="categorySelect">Category:</label>
                         <div class="col-6">
                             <select class="form-select form-select-sm" id="categorySelect">
-                                <option value="animals">Animals</option>
-                                <option value="art">Art</option>
-                                <option value="celebrities">Celebrities</option>
-                                <option value="entertainment_board_games">Entertainment: Board Games</option>
-                                <option value="entertainment_books">Entertainment: Books</option>
-                                <option value="entertainment_cartoon_animations">Entertainment: Cartoon & Animations
-                                </option>
-                                <option value="entertainment_comics">Entertainment: Comics</option>
-                                <option value="entertainment_film">Entertainment: Film</option>
-                                <option value="entertainment_japanese_anime_manga">Entertainment: Japanese Anime &
-                                    Manga
-                                </option>
-                                <option value="entertainment_music">Entertainment: Music</option>
-                                <option value="entertainment_musicals_theatres">Entertainment: Musicals & Theatres
-                                </option>
-                                <option value="entertainment_television">Entertainment: Television</option>
-                                <option value="entertainment_video_games">Entertainment: Video Games</option>
-                                <option value="general_knowledge">General Knowledge</option>
-                                <option value="geography">Geography</option>
-                                <option value="history">History</option>
-                                <option value="mythology">Mythology</option>
-                                <option value="politics">Politics</option>
-                                <option value="science_nature">Science & Nature</option>
-                                <option value="science_computers">Science: Computers</option>
-                                <option value="science_gadgets">Science: Gadgets</option>
-                                <option value="science_mathematics">Science: Mathematics</option>
-                                <option value="sports">Sports</option>
-                                <option value="vehicles">Vehicles</option>
+                                <th:block th:each="category : ${categories}">
+                                    <option th:text="${category.getName()}"></option>
+                                </th:block>
                             </select>
                         </div>
                     </div>

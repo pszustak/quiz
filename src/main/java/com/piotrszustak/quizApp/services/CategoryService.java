@@ -10,18 +10,19 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @Service
 @Log
 public class CategoryService {
 
-    public CategoriesDto getAllCategories() {
+    public List<CategoriesDto.CategoryDto> getAllCategories() {
         try {
             RestTemplate restTemplate = new RestTemplate();
             CategoriesDto result = restTemplate.getForObject("https://opentdb.com/api_category.php", CategoriesDto.class);
             log.info("Online resource access succeeded");
             log.info("Quiz categories downloaded from https://opentdb.com/api_category.php: " + result.getCategories());
-            return result;
+            return result.getCategories();
         } catch (ResourceAccessException | HttpClientErrorException e) {
             log.info("Online resource access failed");
             log.info("Loading categories from backup...");
@@ -31,7 +32,7 @@ public class CategoryService {
             ObjectMapper objectMapper = new ObjectMapper();
             CategoriesDto result = objectMapper.readValue(new File("src/main/resources/backup_categories.json"), CategoriesDto.class);
             log.info("Quiz categories loaded from backup: " + result.getCategories());
-            return result;
+            return result.getCategories();
         } catch (IOException ex) {
             throw new RuntimeException("Loading categories from backup failed", ex);
         }
