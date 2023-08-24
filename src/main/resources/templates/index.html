@@ -65,9 +65,9 @@
                                for="difficultySelect">Difficulty:</label>
                         <div class="col-2">
                             <select class="form-select form-select-sm" id="difficultySelect">
-                                <option value="easy">Easy</option>
-                                <option value="medium">Medium</option>
-                                <option value="hard">Hard</option>
+                                <th:block th:each="difficulty : ${difficulties}">
+                                    <option th:text="${difficulty.getLabel()}"></option>
+                                </th:block>
                             </select>
                         </div>
                     </div>
