@@ -48,14 +48,15 @@
                 <div class="mb-4">
                     <h3>Customize Your quiz</h3>
                 </div>
-                <form>
+                <form action="#" th:action="@{/}" th:object="${gameOptions}" method="post">
                     <div class="form-group row mb-3">
                         <label class="col-3 col-form-select-label align-self-center"
                                for="categorySelect">Category:</label>
                         <div class="col-6">
-                            <select class="form-select form-select-sm" id="categorySelect">
+                            <select class="form-select form-select-sm" id="categorySelect"
+                                    th:field="*{chosenCategoryId}">
                                 <th:block th:each="category : ${categories}">
-                                    <option th:text="${category.getName()}"></option>
+                                    <option th:text="${category.getName()}" th:value="${category.getId()}"></option>
                                 </th:block>
                             </select>
                         </div>
@@ -64,22 +65,33 @@
                         <label class="col-3 col-form-select-label align-self-center"
                                for="difficultySelect">Difficulty:</label>
                         <div class="col-2">
-                            <select class="form-select form-select-sm" id="difficultySelect">
+                            <select class="form-select form-select-sm" id="difficultySelect"
+                                    th:field="*{chosenDifficulty}">
                                 <th:block th:each="difficulty : ${difficulties}">
-                                    <option th:text="${difficulty.getLabel()}"></option>
+                                    <option th:text="${difficulty.getLabel()}" th:value="${difficulty}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-4">
+                        <label class="col-3 col-form-select-label align-self-center" for="numberSelect">Number of
+                            questions:</label>
+                        <div class="col-2">
+                            <select class="form-select form-select-sm" id="numberSelect"
+                                    th:field="*{chosenNumberOfQuestions}">
+                                <th:block th:each="number : ${numbers}">
+                                    <option th:text="${number}" th:value="${number}"></option>
                                 </th:block>
                             </select>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-3 col-form-select-label align-self-center" for="numberSelect">Number of
-                            questions:</label>
+                        <div class="col-3">
+                        </div>
                         <div class="col-2">
-                            <select class="form-select form-select-sm" id="numberSelect">
-                                <th:block th:each="number : ${numbers}">
-                                    <option th:text="${number}"></option>
-                                </th:block>
-                            </select>
+                            <div class="row">
+                                <button class="btn btn-primary" type="submit">Play!</button>
+                            </div>
                         </div>
                     </div>
                 </form>
