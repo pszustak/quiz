@@ -8,8 +8,6 @@ import lombok.extern.java.Log;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @Log
@@ -34,11 +32,5 @@ public class HomeController {
         model.addAttribute("numbers", numberService.getNumbers());
         model.addAttribute("difficulties", difficultyService.getDifficultyLevels());
         return "index";
-    }
-
-    @PostMapping("/")
-    public String postHomeForm(@ModelAttribute GameOptionsDto gameOptions) {
-        log.info("Form data submitted: " + gameOptions);
-        return "game";
     }
 }
