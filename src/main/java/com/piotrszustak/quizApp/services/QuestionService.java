@@ -2,7 +2,6 @@ package com.piotrszustak.quizApp.services;
 
 import com.piotrszustak.quizApp.dtos.GameOptionsDto;
 import com.piotrszustak.quizApp.dtos.QuestionsDto;
-import jakarta.servlet.http.HttpSession;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -15,8 +14,7 @@ import java.util.List;
 @Log
 public class QuestionService {
 
-    public List<QuestionsDto.QuestionDto> getAllQuestions(HttpSession session) {
-        GameOptionsDto gameOptions = (GameOptionsDto) session.getAttribute("gameOptions");
+    public List<QuestionsDto.QuestionDto> getAllQuestions(GameOptionsDto gameOptions) {
         URI uri = UriComponentsBuilder
                 .fromUriString("https://opentdb.com/api.php")
                 .queryParam("amount", gameOptions.getChosenNumberOfQuestions())
