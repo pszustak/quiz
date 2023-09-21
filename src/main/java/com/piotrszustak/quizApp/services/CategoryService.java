@@ -30,11 +30,11 @@ public class CategoryService {
 
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            CategoriesDto result = objectMapper.readValue(new File("src/main/resources/backup_categories.json"), CategoriesDto.class);
+            CategoriesDto result = objectMapper.readValue(new File("src/main/resources/backups/categories.json"), CategoriesDto.class);
             log.info("Quiz categories loaded from backup: " + result.getCategories());
             return result.getCategories();
-        } catch (IOException ex) {
-            throw new RuntimeException("Loading categories from backup failed", ex);
+        } catch (IOException e) {
+            throw new RuntimeException("Loading categories from backup failed", e);
         }
     }
 }
