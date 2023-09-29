@@ -37,12 +37,11 @@
 <!-- Game section-->
 <section class="container d-flex align-items-center justify-content-center">
     <div class="row col-10 text-center">
-        <h2 class="fw-bolder mb-5">Question number</h2>
-        <p class="lead mb-5">Content of the question</p>
-        <a class="btn btn-lg btn-light mb-4" href="Answer1">Answer1</a>
-        <a class="btn btn-lg btn-light mb-4" href="Answer2">Answer2</a>
-        <a class="btn btn-lg btn-light mb-4" href="Answer3">Answer3</a>
-        <a class="btn btn-lg btn-light mb-4" href="Answer4">Answer4</a>
+        <h2 class="fw-bolder mb-5" th:text="${currentQuestionNumber} + ' / ' + ${totalQuestionsNumber}"></h2>
+        <p class="lead mb-5" th:text="${currentQuestionContent}"></p>
+        <th:block th:each="currentQuestionAnswer : ${currentQuestionAnswers}">
+            <a class="btn btn-lg btn-light mb-4" th:text="${currentQuestionAnswer}"></a>
+        </th:block>
     </div>
 </section>
 <!-- Footer-->

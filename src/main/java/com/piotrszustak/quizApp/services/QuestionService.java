@@ -30,6 +30,7 @@ public class QuestionService {
                     .toUri();
             RestTemplate restTemplate = new RestTemplate();
             QuestionsDto result = restTemplate.getForObject(uri, QuestionsDto.class);
+            log.info("Online resource access succeeded");
             log.info("Questions obtained from " + uri + ": " + result.getQuestions());
             return result.getQuestions();
         } catch (ResourceAccessException | HttpClientErrorException e) {
