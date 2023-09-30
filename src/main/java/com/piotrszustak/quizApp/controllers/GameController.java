@@ -1,6 +1,7 @@
 package com.piotrszustak.quizApp.controllers;
 
 import com.piotrszustak.quizApp.dtos.GameOptionsDto;
+import com.piotrszustak.quizApp.dtos.UsersAnswerDto;
 import com.piotrszustak.quizApp.services.GameService;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Controller;
@@ -30,10 +31,17 @@ public class GameController {
     @GetMapping("/game")
     public String game(Model model) {
         gameService.initGame(gameOptions);
+        model.addAttribute("usersAnswer", new UsersAnswerDto());
         model.addAttribute("totalQuestionsNumber", gameService.getTotalQuestionsNumber());
         model.addAttribute("currentQuestionNumber", gameService.getCurrentQuestionNumber());
         model.addAttribute("currentQuestionContent", gameService.getCurrentQuestionContent());
         model.addAttribute("currentQuestionAnswers", gameService.getCurrentQuestionMixedUpAnswers());
+        return "game";
+    }
+
+    @PostMapping("/game")
+    public String postUsersAnswer(UsersAnswerDto usersAnswer) {
+        log.info("Form data submitted: " + usersAnswer);
         return "game";
     }
 }

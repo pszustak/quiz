@@ -39,9 +39,12 @@
     <div class="row col-10 text-center">
         <h2 class="fw-bolder mb-5" th:text="${currentQuestionNumber} + ' / ' + ${totalQuestionsNumber}"></h2>
         <p class="lead mb-5" th:text="${currentQuestionContent}"></p>
-        <th:block th:each="currentQuestionAnswer : ${currentQuestionAnswers}">
-            <a class="btn btn-lg btn-light mb-4" th:text="${currentQuestionAnswer}"></a>
-        </th:block>
+        <form action="#" th:action="@{/game}" th:object="${usersAnswer}" method="post">
+            <th:block th:each="currentQuestionAnswer : ${currentQuestionAnswers}">
+                <button class="btn btn-lg btn-light mb-4" type="submit" name="answer" th:text="${currentQuestionAnswer}"
+                        th:value="${currentQuestionAnswer}"></button>
+            </th:block>
+        </form>
     </div>
 </section>
 <!-- Footer-->
