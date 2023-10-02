@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Log
 public class GameController {
 
-    private GameOptionsDto gameOptions;
-
     private final GameService gameService;
 
     public GameController(final GameService gameService) {
@@ -23,14 +21,13 @@ public class GameController {
 
     @PostMapping("/")
     public String postGameOptionsForm(GameOptionsDto gameOptions) {
-        this.gameOptions = gameOptions;
         log.info("Form data submitted: " + gameOptions);
+        gameService.initGame(gameOptions);
         return "redirect:game";
     }
 
     @GetMapping("/game")
     public String game(Model model) {
-        gameService.initGame(gameOptions);
         model.addAttribute("usersAnswer", new UsersAnswerDto());
         model.addAttribute("totalQuestionsNumber", gameService.getTotalQuestionsNumber());
         model.addAttribute("currentQuestionNumber", gameService.getCurrentQuestionNumber());
