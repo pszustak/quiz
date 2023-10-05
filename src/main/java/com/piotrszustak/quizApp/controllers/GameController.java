@@ -29,6 +29,7 @@ public class GameController {
     @GetMapping("/game")
     public String game(Model model) {
         model.addAttribute("usersAnswer", new UsersAnswerDto());
+        model.addAttribute("currentQuestionCategory", gameService.getCurrentQuestionCategory());
         model.addAttribute("totalQuestionsNumber", gameService.getTotalQuestionsNumber());
         model.addAttribute("currentQuestionNumber", gameService.getCurrentQuestionNumber());
         model.addAttribute("currentQuestionContent", gameService.getCurrentQuestionContent());
@@ -39,6 +40,22 @@ public class GameController {
     @PostMapping("/game")
     public String postUsersAnswer(UsersAnswerDto usersAnswer) {
         log.info("Form data submitted: " + usersAnswer);
-        return "game";
+        gameService.checkAnswerCorrectness(usersAnswer);
+        if (gameService.isNextQuestion()) {
+            return "redirect:game";
+        } else {
+            return "redirect:result";
+        }
+    }
+
+    @GetMapping("/result")
+    public String result(Model model) {
+        model.addAttribute("difficulty", gameService.getDifficulty());
+        model.addAttribute("category", gameService.getCurrentQuestionCategory().toLowerCase());
+        model.addAttribute("score", gameService.getScore());
+        model.addAttribute("scorePercentage", gameService.getScorePercentage());
+        model.addAttribute("totalQuestionsNumber", gameService.getTotalQuestionsNumber());
+        model.addAttribute("scoreComment", gameService.getScoreComment());
+        return "result";
     }
 }
