@@ -1,7 +1,7 @@
-package com.piotrszustak.quizApp.services;
+package com.piotrszustak.quizApp.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.piotrszustak.quizApp.dtos.CategoriesDto;
+import com.piotrszustak.quizApp.dto.CategoriesDto;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
