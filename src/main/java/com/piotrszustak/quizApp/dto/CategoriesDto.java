@@ -1,4 +1,4 @@
-package com.piotrszustak.quizApp.dtos;
+package com.piotrszustak.quizApp.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.piotrszustak.quizApp.services;
+package com.piotrszustak.quizApp.service;
 
 import com.piotrszustak.quizApp.enums.Difficulty;
 import org.springframework.stereotype.Service;

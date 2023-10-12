@@ -1,8 +1,8 @@
-package com.piotrszustak.quizApp.controllers;
+package com.piotrszustak.quizApp.controller;
 
-import com.piotrszustak.quizApp.dtos.GameOptionsDto;
-import com.piotrszustak.quizApp.dtos.UsersAnswerDto;
-import com.piotrszustak.quizApp.services.GameService;
+import com.piotrszustak.quizApp.dto.GameOptionsDto;
+import com.piotrszustak.quizApp.dto.UsersAnswerDto;
+import com.piotrszustak.quizApp.service.GameService;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
